@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Register – DTU Examination Portal{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <div class="auth-left">
+    <div class="auth-brand">
+      <div class="auth-logo">DTU</div>
+      <h1 class="auth-university">Delhi Technological University</h1>
+      <p class="auth-tagline">Examination Branch Portal</p>
+    </div>
+    <p class="auth-footer-note">
+      Shahbad Daulatpur, Main Bawana Road, Delhi – 110042<br />
+      For queries: <a href="mailto:examdtu@gmail.com">examdtu@gmail.com</a>
+    </p>
+  </div>
+
+  <div class="auth-right">
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <h2>Create Account</h2>
+        <p>Register with your DTU details</p>
+      </div>
+
+      <form method="POST" action="{{ url_for('auth.register') }}" class="auth-form">
+        {{ form.hidden_tag() }}
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Roll Number</label>
+            {{ form.roll_number(placeholder='e.g. 2K21/CS/001', class='form-input') }}
+            {% for e in form.roll_number.errors %}<span class="field-error">{{ e }}</span>{% endfor %}
+          </div>
+          <div class="form-group">
+            <label>Semester</label>
+            {{ form.semester(placeholder='e.g. 4', class='form-input') }}
+            {% for e in form.semester.errors %}<span class="field-error">{{ e }}</span>{% endfor %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          {{ form.name(placeholder='As per college records', class='form-input') }}
+          {% for e in form.name.errors %}<span class="field-error">{{ e }}</span>{% endfor %}
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          {{ form.email(placeholder='your@dtu.ac.in', class='form-input') }}
+          {% for e in form.email.errors %}<span class="field-error">{{ e }}</span>{% endfor %}
+        </div>
+
+        <div class="form-group">
+          <label>Branch</label>
+          {{ form.branch(placeholder='e.g. Computer Science & Engineering', class='form-input') }}
+          {% for e in form.branch.errors %}<span class="field-error">{{ e }}</span>{% endfor %}
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-with-toggle">
+            {{ form.password(placeholder='Min 6 characters', class='form-input') }}
+            <button type="button" class="toggle-pw" onclick="togglePassword('password', this)">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+            </button>
+          </div>
+          {% for e in form.password.errors %}<span class="field-error">{{ e }}</span>{% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Register</button>
+      </form>
+
+      <p class="auth-switch">
+        Already registered? <a href="{{ url_for('auth.login') }}">Sign in here</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Student Portal – DTU{% endblock %}
+
+{% block content %}
+<div class="landing">
+  <div class="landing-banner">
+    <a href="#" class="banner-link">Tentative Date-Sheet</a>
+    <span class="banner-text">
+      Announced, please check your courses in Date-Sheet and report any Clash/Discrepancy/Non-Avaliability within given time(16.04.2026 ).
+    </span>
+  </div>
+
+  <div class="landing-center">
+    <div class="portal-card">
+      <h1 class="portal-title">Student Portal</h1>
+
+      <form method="POST" action="{{ url_for('auth.login') }}" class="portal-form">
+        {{ form.hidden_tag() }}
+
+        <label class="portal-label" for="roll_number">Roll Number</label>
+        {{ form.roll_number(id='roll_number', placeholder='Eg- 23/MC/09 or 23/MC/29 or 2K21/EE/102', class='portal-input') }}
+        <p class="portal-hint">* 23/MC/029 is not a valid roll number</p>
+
+        <label class="portal-label" for="password">Password</label>
+        {{ form.password(id='password', class='portal-input') }}
+
+        <button type="submit" class="portal-btn portal-btn-primary">Login</button>
+      </form>
+
+      <p class="portal-note">
+        <strong>For emails other than gmail use your phone number as your password and change your email by editting profile</strong>
+      </p>
+
+      <form method="POST" action="{{ url_for('auth.find_email') }}" class="find-email-row">
+        {{ find_email_form.hidden_tag() }}
+        {{ find_email_form.roll_number(placeholder='Roll Number', class='portal-input find-email-input') }}
+        <button type="submit" class="portal-btn portal-btn-primary find-email-btn">Find Email ID</button>
+      </form>
+
+      {% if found_email %}
+        <p class="found-email">Registered email: <strong>{{ found_email }}</strong></p>
+      {% endif %}
+
+      <a href="{{ url_for('auth.google_login') }}" class="portal-btn portal-btn-google">
+        GOOGLE LOGIN (with Registered Gmail ID)
+      </a>
+
+      <div class="portal-links">
+        <a href="{{ url_for('auth.login') }}#exam-dates">Exam Dates</a>
+        <a href="{{ url_for('auth.login') }}#notices">Latest Notices</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Fee Payment Status – DTU Portal{% endblock %}
+
+{% block content %}
+<div class="fee-page">
+
+  <!-- Header / banner -->
+  <div class="fee-hero">
+    <div class="fee-hero-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <div class="fee-hero-text">
+      <h1>All Fees Paid</h1>
+      <p>Every semester's Registration Fees has been successfully received through SBI Collect.</p>
+    </div>
+    <div class="fee-hero-amount">
+      <span class="fee-amount-label">4th Year Fee</span>
+      <span class="fee-amount-value">₹2,46,723</span>
+    </div>
+  </div>
+
+  <!-- Student row -->
+  <div class="fee-student-row">
+    <div><span class="fsr-label">Student</span><span class="fsr-value">{{ current_user.name|upper }}</span></div>
+    <div><span class="fsr-label">Roll Number</span><span class="fsr-value">{{ current_user.roll_number }}</span></div>
+    <div><span class="fsr-label">Programme</span><span class="fsr-value">B.Tech · Information Technology</span></div>
+    <div><span class="fsr-label">Account Year</span><span class="fsr-value">2022 – 2026</span></div>
+  </div>
+
+  <!-- Summary cards -->
+  <div class="fee-summary-grid">
+    <div class="fee-summary-card">
+      <span class="fsc-label">Total Semesters</span>
+      <span class="fsc-value">8</span>
+    </div>
+    <div class="fee-summary-card">
+      <span class="fsc-label">Semesters Paid</span>
+      <span class="fsc-value green">8</span>
+    </div>
+    <div class="fee-summary-card">
+      <span class="fsc-label">Outstanding Dues</span>
+      <span class="fsc-value green">₹0</span>
+    </div>
+    <div class="fee-summary-card">
+      <span class="fsc-label">Last Payment</span>
+      <span class="fsc-value">12 Aug 2025</span>
+    </div>
+  </div>
+
+  <!-- Note + actions -->
+  <div class="fee-note">
+    <strong>Note:</strong> All SBI Collect receipts have been verified against the Examination Branch ledger.
+    For any discrepancy, email <a href="mailto:examdtu@gmail.com">examdtu@gmail.com</a> with the transaction reference number.
+  </div>
+
+  <div class="fee-actions">
+    <a href="{{ url_for('student.dashboard') }}" class="btn-back">← Back to Portal</a>
+  </div>
+
+</div>
+{% endblock %}

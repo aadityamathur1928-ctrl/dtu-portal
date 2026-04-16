@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Backlog Status – DTU Portal{% endblock %}
+
+{% block content %}
+<div class="backlog-page">
+
+  <div class="backlog-hero">
+    <div class="backlog-hero-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="44" height="44"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <h1>You have no backlogs</h1>
+    <p>All courses from Semester 1 through Semester {{ current_user.semester }} are cleared. Nothing pending, nothing due for re-registration.</p>
+  </div>
+
+  <div class="backlog-summary-grid">
+    <div class="backlog-summary-card">
+      <span class="bsc-label">Semesters Completed</span>
+      <span class="bsc-value">{{ current_user.semester - 1 }} / 8</span>
+    </div>
+    <div class="backlog-summary-card">
+      <span class="bsc-label">Pending Courses</span>
+      <span class="bsc-value green">0</span>
+    </div>
+    <div class="backlog-summary-card">
+      <span class="bsc-label">Re-registration Required</span>
+      <span class="bsc-value green">None</span>
+    </div>
+  </div>
+
+  <div class="backlog-note">
+    <strong>Note:</strong> Since there are no pending papers on your record, the SBI Collect re-registration
+    payment flow is not applicable to your account. If you believe this is incorrect,
+    contact the Examination Branch at <a href="mailto:examdtu@gmail.com">examdtu@gmail.com</a>.
+  </div>
+
+  <div class="backlog-actions">
+    <a href="{{ url_for('student.dashboard') }}" class="btn-back">← Back to Portal</a>
+  </div>
+
+</div>
+{% endblock %}

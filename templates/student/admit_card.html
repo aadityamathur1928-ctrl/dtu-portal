@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block title %}Admit Card – DTU Portal{% endblock %}
+{% block page_title %}Admit Card{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <h2>Admit Card</h2>
+    <p>End Semester Examinations – Even Semester 2024-25</p>
+  </div>
+  <a href="{{ url_for('student.download_admit_card') }}" class="btn btn-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a1 1 0 001 1h16a1 1 0 001-1v-3" /></svg>
+    Download PDF
+  </a>
+</div>
+
+<!-- Preview card -->
+<div class="admit-card-preview">
+  <div class="admit-header">
+    <div class="admit-logo-block">
+      <div class="admit-logo">DTU</div>
+      <div>
+        <h3>DELHI TECHNOLOGICAL UNIVERSITY</h3>
+        <p>(Formerly Delhi College of Engineering)</p>
+        <small>Shahbad Daulatpur, Main Bawana Road, Delhi – 110042</small>
+      </div>
+    </div>
+    <div class="admit-title-banner">ADMIT CARD – END SEMESTER EXAMINATION</div>
+  </div>
+
+  <div class="admit-student-info">
+    <div class="admit-field">
+      <span class="admit-label">Roll Number</span>
+      <span class="admit-value">{{ current_user.roll_number }}</span>
+    </div>
+    <div class="admit-field">
+      <span class="admit-label">Student Name</span>
+      <span class="admit-value">{{ current_user.name }}</span>
+    </div>
+    <div class="admit-field">
+      <span class="admit-label">Branch</span>
+      <span class="admit-value">{{ current_user.branch or '—' }}</span>
+    </div>
+    <div class="admit-field">
+      <span class="admit-label">Programme</span>
+      <span class="admit-value">{{ current_user.programme or 'B.Tech' }}</span>
+    </div>
+    <div class="admit-field">
+      <span class="admit-label">Semester</span>
+      <span class="admit-value">{{ current_user.semester }}</span>
+    </div>
+    <div class="admit-field">
+      <span class="admit-label">Date of Issue</span>
+      <span class="admit-value">{{ now().strftime('%d %B %Y') if now else 'Today' }}</span>
+    </div>
+  </div>
+
+  <div class="admit-exam-section">
+    <h4>Examination Schedule</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Subject Code</th>
+          <th>Subject Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Venue</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if exams %}
+          {% for exam in exams %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td><code>{{ exam.subject_code }}</code></td>
+            <td>{{ exam.subject_name }}</td>
+            <td>{{ exam.exam_date.strftime('%d-%m-%Y') }}</td>
+            <td>{{ exam.exam_time }}</td>
+            <td>{{ exam.duration_hours }} Hrs</td>
+            <td>{{ exam.venue or '—' }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="7" class="empty-table-msg">No upcoming exams found.</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="admit-instructions">
+    <h4>Important Instructions</h4>
+    <ol>
+      <li>This Admit Card must be produced at the Examination Centre for entry into the Examination Hall.</li>
+      <li>Students must carry a valid DTU Identity Card along with this Admit Card.</li>
+      <li>Entry is not allowed in the Examination Hall 30 minutes after the commencement of the Examination.</li>
+      <li>Use of mobile phones, electronic gadgets, or any other unfair means is strictly prohibited.</li>
+      <li>Students are not permitted to leave the Examination Hall during the first 30 minutes.</li>
+      <li>This Admit Card is provisional and subject to verification of eligibility.</li>
+    </ol>
+  </div>
+
+  <div class="admit-signatures">
+    <div class="sign-block">
+      <div class="sign-line"></div>
+      <span>Student Signature</span>
+    </div>
+    <div class="sign-block">
+      <div class="sign-line"></div>
+      <span>Invigilator Signature</span>
+    </div>
+    <div class="sign-block">
+      <div class="sign-line"></div>
+      <span>Controller of Examinations</span>
+    </div>
+  </div>
+</div>
+
+<p class="admit-note">
+  * Download the PDF for print. Carry a physical copy to all examination halls.
+</p>
+{% endblock %}

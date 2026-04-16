@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Examination Branch :: Delhi Technological University</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: Tahoma, Geneva, sans-serif;
+      font-size: 13px;
+      color: #333;
+    }
+    .eb-wrap { width: 957px; margin: 0 auto; }
+
+    /* ── Header band ───────────────────────────── */
+    .eb-header {
+      background: #eae3d2 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='60'><rect width='4' height='60' fill='%23ede6d5'/></svg>") repeat-x;
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid #888;
+    }
+    .eb-header-logo {
+      width: 100px; height: 100px; background: #fff;
+      border: 1px solid #999;
+      display: flex; align-items: center; justify-content: center;
+      margin-right: 18px;
+      color: #7a1a1a; font-weight: bold; font-family: Tahoma;
+      font-size: 14px; text-align: center; line-height: 1.2;
+    }
+    .eb-header-text {
+      flex: 1;
+      text-align: center;
+      color: #666666;
+      font-family: Tahoma;
+    }
+    .eb-header-text h1 {
+      font-size: 32px;
+      font-weight: normal;
+      margin: 0 0 4px;
+      color: #666666;
+    }
+    .eb-header-text h2 {
+      font-size: 24px;
+      font-style: italic;
+      font-weight: normal;
+      margin: 0 0 4px;
+      color: #666666;
+    }
+    .eb-header-text .small-italic {
+      font-size: 14px;
+      font-style: italic;
+      color: #666666;
+    }
+
+    /* ── Nav bar ───────────────────────────── */
+    .eb-nav {
+      background: #d9c9a8 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='30'><rect width='4' height='30' fill='%23e6d7b6'/><rect y='29' width='4' height='1' fill='%23a8956c'/></svg>") repeat-x;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0;
+      border-top: 1px solid #b09872;
+      border-bottom: 1px solid #b09872;
+    }
+    .eb-nav a {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
+      padding: 8px 22px;
+      border-right: 1px solid #b09872;
+    }
+    .eb-nav a:first-child { border-left: 1px solid #b09872; }
+    .eb-nav a:hover { background: rgba(255,255,255,0.3); }
+
+    /* ── Banner ───────────────────────────── */
+    .eb-banner {
+      height: 132px;
+      background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 40%, #60a5fa 75%, #1e3a8a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: Georgia, serif;
+      font-size: 36px;
+      font-style: italic;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      border-bottom: 1px solid #888;
+    }
+
+    /* ── Marquee strip ───────────────────────────── */
+    .eb-marquee-strip {
+      background: #e6e6e6;
+      padding: 6px 12px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #444;
+      border-bottom: 1px solid #bbb;
+    }
+
+    /* ── Three-column content ───────────────────────────── */
+    .eb-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .eb-col {
+      background: #fff;
+      border-right: 1px solid #666;
+      border-top: 1px solid #666;
+      border-bottom: 1px solid #666;
+      padding: 12px 14px;
+      min-height: 280px;
+      font-family: Tahoma, sans-serif;
+      font-size: 12px;
+      color: #333;
+    }
+    .eb-col:first-child { border-left: 1px solid #666; }
+
+    .eb-col-title {
+      color: #666666;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 0 0 10px;
+      font-family: Tahoma;
+    }
+    .eb-col-title a { color: #333; text-decoration: none; }
+    .eb-new-badge {
+      display: inline-block;
+      background: #e11;
+      color: #fff;
+      font-size: 10px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      border-radius: 2px;
+      font-weight: bold;
+      animation: blink 1s steps(2, start) infinite;
+    }
+    @keyframes blink { to { visibility: hidden; } }
+
+    .eb-col-image {
+      float: left;
+      width: 94px; height: 137px;
+      margin: 0 10px 4px 0;
+      border: 1px solid #888;
+      background: #f0f0f0;
+      object-fit: cover;
+      display: block;
+    }
+    .eb-col p { margin: 0 0 6px; line-height: 1.5; }
+
+    /* ── Marquee (vertical) ───────────────────────────── */
+    .eb-marquee-wrap {
+      height: 230px;
+      overflow: hidden;
+      position: relative;
+    }
+    .eb-marquee-inner {
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      animation: scroll-up 18s linear infinite;
+    }
+    .eb-marquee-wrap:hover .eb-marquee-inner {
+      animation-play-state: paused;
+    }
+    @keyframes scroll-up {
+      0%   { top: 100%; }
+      100% { top: -100%; }
+    }
+    .eb-marquee-inner a {
+      display: block;
+      color: #d00;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 6px 0;
+      line-height: 1.3;
+    }
+    .eb-marquee-inner a:hover { text-decoration: underline; }
+
+    .eb-reg-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #333;
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    /* ── Footer ───────────────────────────── */
+    .eb-counter-strip {
+      background: #f3f3f3;
+      text-align: center;
+      padding: 8px;
+      font-size: 11px;
+      color: #555;
+      border-top: 1px solid #888;
+      border-bottom: 1px solid #888;
+    }
+    .eb-visitor-box {
+      display: inline-block;
+      background: #000;
+      color: #0f0;
+      padding: 2px 10px;
+      font-family: "Courier New", monospace;
+      margin-left: 6px;
+    }
+    .eb-footer {
+      background: #2a2a2a url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='40'><rect width='4' height='40' fill='%23333'/></svg>") repeat-x;
+      color: #ccc;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      font-family: Tahoma;
+    }
+    .eb-footer a { color: #9cf; }
+    .eb-modified {
+      text-align: center;
+      color: #000457;
+      padding: 6px;
+      font-size: 11px;
+      font-family: Tahoma;
+    }
+    .eb-back-link {
+      display: block;
+      text-align: center;
+      margin: 12px;
+      color: #1a0dab;
+      font-family: Arial;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="eb-wrap">
+
+    <!-- Header -->
+    <div class="eb-header">
+      <div class="eb-header-logo">
+        <img src="{{ url_for('static', filename='img/dd.png') }}"
+             onerror="this.style.display='none'"
+             alt="DTU" width="90" height="90" style="object-fit:contain" />
+      </div>
+      <div class="eb-header-text">
+        <h1>Examination Branch</h1>
+        <h2>(Delhi Technological University)</h2>
+        <div class="small-italic">(Formerly Delhi College of Engineering)</div>
+      </div>
+    </div>
+
+    <!-- Nav bar -->
+    <div class="eb-nav">
+      <a href="{{ url_for('student.notifications') }}">Home</a>
+      <a href="http://dtu.ac.in" target="_blank">DTU</a>
+      <a href="#">Performa</a>
+      <a href="{{ url_for('static', filename='DS_TEN_BTECH_E26.pdf') }}" target="_blank">Date-Sheet</a>
+      <a href="{{ url_for('student.results') }}">Results</a>
+      <a href="#">Notices</a>
+      <a href="#">Ph.D. Viva</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <!-- Banner -->
+    <div class="eb-banner">Delhi Technological University</div>
+
+    <!-- Marquee strip -->
+    <div class="eb-marquee-strip">&nbsp;</div>
+
+    <!-- Three-column content -->
+    <div class="eb-content">
+
+      <!-- Col 1: VC Message -->
+      <div class="eb-col">
+        <h3 class="eb-col-title">Hon'ble VC's Message</h3>
+        <img src="{{ url_for('static', filename='img/vc.png') }}" alt="VC" class="eb-col-image" />
+        <p>Dear Friends, I Welcome you on the web-page of Examination &amp; Result Branch.
+        I assure you that this page will help you to get the information related to the branch
+        online and on 24X7 basis.</p>
+      </div>
+
+      <!-- Col 2: Examination Branch -->
+      <div class="eb-col">
+        <h3 class="eb-col-title"><a href="#">Examination Branch</a></h3>
+        <img src="{{ url_for('static', filename='img/exam-branch.png') }}" alt="Examination Branch" class="eb-col-image" />
+        <p><strong>Examination Branch:</strong> It is one of the duties of the University to hold
+        examinations and confer the degrees and other academic distinctions on persons who fulfill
+        the requisite qualifications/conditions. The Examination Branch of the University therefore
+        is the backbone of the University.</p>
+      </div>
+
+      <!-- Col 3: What's New + marquee -->
+      <div class="eb-col">
+        <h3 class="eb-col-title">
+          <a href="#">What's New</a>
+          <span class="eb-new-badge">NEW</span>
+        </h3>
+        <div class="eb-marquee-wrap">
+          <div class="eb-marquee-inner">
+            <a href="{{ url_for('static', filename='DS_TEN_BTECH_E26.pdf') }}" target="_blank">Tentative Date-Sheet Announced for End Term Examination May-2026: 09.04.2026</a>
+            <a href="#">Registration Schedule for Even Semester of the Academic Year 2025-2026: 24.12.2025</a>
+            <a href="#">Discrepancy Performa</a>
+            <a href="{{ url_for('static', filename='DS_TEN_BTECH_E26.pdf') }}" target="_blank">Tentative Date-Sheet Announced for End Term Examination May-2026: 09.04.2026</a>
+            <a href="#">Registration Schedule for Even Semester of the Academic Year 2025-2026: 24.12.2025</a>
+            <a href="#">Discrepancy Performa</a>
+          </div>
+        </div>
+        <a href="https://reg-exam.dtu.ac.in" target="_blank" class="eb-reg-link">Registration Link</a>
+      </div>
+
+    </div>
+
+    <!-- Visitor counter -->
+    <div class="eb-counter-strip">
+      You are Visitor No. ::
+      <span class="eb-visitor-box">0 4 2 1 8 7 9</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="eb-footer">
+      Copyright (c) 2011-2012 All rights of the site rest with Delhi Technological University<br />
+      For Website related queries/suggestions contact examination branch
+    </div>
+
+    <div class="eb-modified">
+      Page last modified on :
+      <script>document.write(document.lastModified);</script>
+    </div>
+
+    <a href="{{ url_for('student.dashboard') }}" class="eb-back-link">← Back to Student Portal</a>
+
+  </div>
+</body>
+</html>

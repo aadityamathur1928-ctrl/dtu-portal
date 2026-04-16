@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Result – DTU Portal{% endblock %}
+
+{% block content %}
+<div class="rs-page">
+
+  <!-- Official notification header -->
+  <div class="rs-header">
+    <img src="{{ url_for('static', filename='img/dd.png') }}" alt="DTU" class="rs-crest" />
+    <h1 class="rs-univ">Delhi Technological University</h1>
+    <p class="rs-subuniv">(Formerly Delhi College of Engineering)</p>
+  </div>
+
+  <hr class="rs-hr" />
+
+  <p class="rs-lede">THE RESULT OF THE CANDIDATE WHO APPEARED IN THE FOLLOWING EXAMINATION HELD IN NOV 2025 IS DECLARED AS UNDER:-</p>
+  <p class="rs-programme">Bachelor of Technology(Information Technology), VII-SEMESTER</p>
+
+  <div class="rs-meta">
+    <span><strong>Result Declaration Date :</strong> 12-Feb-2026</span>
+    <span><strong>Notification No:</strong> 1932</span>
+  </div>
+
+  <!-- Result table -->
+  <div class="rs-table-wrap">
+    <table class="rs-table">
+      <thead>
+        <tr>
+          <th rowspan="2">Sr.No</th>
+          <th rowspan="2">Roll No.</th>
+          <th rowspan="2">Name of Student</th>
+          <th>BT411</th>
+          <th>CE431a</th>
+          <th>IT401</th>
+          <th>IT403</th>
+          <th>IT407</th>
+          <th>MOOC405</th>
+          <th rowspan="2">SGPA</th>
+          <th rowspan="2">TC</th>
+          <th rowspan="2">Failed Courses</th>
+        </tr>
+        <tr>
+          <th>4.00</th>
+          <th>4.00</th>
+          <th>4.00</th>
+          <th>2.00</th>
+          <th>4.00</th>
+          <th>4.00</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>49</td>
+          <td>2K22/IT/01</td>
+          <td class="rs-name">AADITYA MATHUR</td>
+          <td>O</td>
+          <td>O</td>
+          <td>O</td>
+          <td>O</td>
+          <td>O</td>
+          <td>A+</td>
+          <td class="rs-sgpa">9.86</td>
+          <td>22</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Subject legend -->
+  <div class="rs-subjects">
+    <strong>BT411</strong> : INDUSTRIAL BIOTECHNOLOGY &nbsp;&nbsp;
+    <strong>CE431a</strong> : CYCLONIC HAZARD ASSESSMENT AND MITIGATION &nbsp;&nbsp;
+    <strong>IT401</strong> : B.TECH PROJECT-I &nbsp;&nbsp;
+    <strong>IT403</strong> : TRAINING SEMINAR &nbsp;&nbsp;
+    <strong>IT407</strong> : INFORMATION AND NETWORK SECURITY &nbsp;&nbsp;
+    <strong>MOOC405</strong> : MOOC COURSE
+  </div>
+
+  <!-- Aggregate CGPA -->
+  <div class="rs-cgpa-card">
+    <div class="rs-cgpa-left">
+      <span class="rs-cgpa-label">Aggregate CGPA (Semesters I – VII)</span>
+      <span class="rs-cgpa-sub">Based on 7 semesters of coursework</span>
+    </div>
+    <div class="rs-cgpa-right">
+      <span class="rs-cgpa-value">8.29012</span>
+    </div>
+  </div>
+
+  <!-- Signatures -->
+  <div class="rs-signatures">
+    <div><strong>OIC (Results)</strong></div>
+    <div><strong>Controller of Examination</strong></div>
+  </div>
+
+  <hr class="rs-hr" />
+
+  <!-- Note -->
+  <p class="rs-note">
+    <strong>Note:</strong> Any discrepancy in the result in r/o name/roll no/registration/marks/grades/course code/title
+    should be brought to the notice of Controller of Examination/OIC(Results) within 15 days of declaration of result,
+    in the prescribed proforma.
+  </p>
+
+</div>
+{% endblock %}

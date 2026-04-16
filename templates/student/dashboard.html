@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}Home – DTU Portal{% endblock %}
+
+{% block content %}
+<div class="dtu-profile-grid">
+
+  <!-- ── Left column: Photo + Upload + Name ─────────────────────────── -->
+  <aside class="profile-left">
+    <div class="profile-photo-frame">
+      <img src="{{ url_for('static', filename='img/aa.png') }}" alt="Student photo" />
+    </div>
+
+    <form class="photo-upload" onsubmit="event.preventDefault();">
+      <div class="file-picker">
+        <label class="file-btn">
+          Choose File
+          <input type="file" accept="image/jpeg" hidden />
+        </label>
+        <span class="file-name">No file chosen</span>
+      </div>
+      <p class="upload-note upload-note-blue">JPEG files Only</p>
+      <p class="upload-note upload-note-blue">Max-Size:200kb</p>
+      <p class="upload-note upload-note-red">
+        <span class="red-strong">Please upload</span> passport size formal photos only.This will be printed on your degree.
+      </p>
+      <button type="submit" class="btn-submit">Submit</button>
+    </form>
+
+    <div class="profile-name-block">
+      <h2 class="profile-name">{{ current_user.name|upper }}</h2>
+      <p class="profile-roll">{{ current_user.roll_number }}</p>
+      <p class="profile-programme">BTECH</p>
+      <p class="profile-branch">Information Technology</p>
+    </div>
+  </aside>
+
+  <!-- ── Middle column: My Profile ───────────────────────────────────── -->
+  <section class="profile-middle">
+    <h2 class="profile-section-title">My Profile</h2>
+    <button class="btn-edit-profile" type="button">Edit Profile and Password</button>
+
+    <div class="profile-fields">
+      <div class="pf-row"><span class="pf-label">Full Name</span><span class="pf-value">{{ current_user.name|upper }}</span></div>
+      <div class="pf-row"><span class="pf-label">ABC ID</span><span class="pf-value">921-898-086-810</span></div>
+      <div class="pf-row"><span class="pf-label">Aadhar No.</span><span class="pf-value">0</span></div>
+      <div class="pf-row"><span class="pf-label">Category</span><span class="pf-value">OBC</span></div>
+      <div class="pf-row pf-row-stack">
+        <span class="pf-label">Religon</span>
+        <span class="pf-sub-label">Hindi Name(Please update this will be printed in degree)</span>
+        <span class="pf-value-inline">NULL</span>
+      </div>
+      <div class="pf-row"><span class="pf-label">Personal Email</span><span class="pf-value">aadityamathur1077@gmail.com</span></div>
+      <div class="pf-row"><span class="pf-label">DTU Email</span><span class="pf-value">aadityamathur_it22a8_35@dtu.ac.in</span></div>
+      <div class="pf-row"><span class="pf-label">Mobile No.</span><span class="pf-value">8368913647</span></div>
+      <div class="pf-row pf-row-stack">
+        <span class="pf-label">Family Income</span>
+        <span class="pf-sub-label">Father Name</span>
+        <span class="pf-value-inline">SANJEEV KUMAR</span>
+      </div>
+      <div class="pf-row"><span class="pf-label">Father's Mobile No.</span><span class="pf-value">8368919321</span></div>
+      <div class="pf-row pf-row-stack">
+        <span class="pf-label">Father's Email</span>
+        <span class="pf-sub-label">Mother Name</span>
+        <span class="pf-value-inline">RAJNESH</span>
+      </div>
+      <div class="pf-row pf-row-address">
+        <span class="pf-label pf-inline-label">Address</span><span class="pf-address-text">H.NO.1055 OPPOSITE VETERINARY HOSPITAL, , KARALA, NORTH WEST DELHI, DELHI (NCT), INDIA 110081</span>
+      </div>
+      <div class="pf-row"><span class="pf-label">Permanent Address</span><span class="pf-value"></span></div>
+      <div class="pf-row"><span class="pf-label">Nationality</span><span class="pf-value">INDIAN</span></div>
+      <div class="pf-row"><span class="pf-label">Semester</span><span class="pf-value">{{ current_user.semester }}</span></div>
+      <div class="pf-row pf-row-password">
+        <span class="pf-label">Password</span>
+        <span class="pf-value pf-pw" id="pfPassword" data-pw="nmke3391">***********</span>
+        <button type="button" class="btn-show-pw" id="pfPwToggle"
+                onclick="(function(b){var s=document.getElementById('pfPassword');if(b.innerText==='Show'){s.innerText=s.dataset.pw;b.innerText='Hide';}else{s.innerText='***********';b.innerText='Show';}})(this)">Show</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Right column: Courses + Links ───────────────────────────────── -->
+  <aside class="profile-right">
+    <div class="course-reg-header">
+      <a href="{{ url_for('student.course_registration') }}" class="course-reg-title">Course Registration 2025-26 (JAN-MAY 2026)</a>
+    </div>
+
+    <h3 class="courses-title">Courses Registered</h3>
+    <div class="courses-list">
+      <div class="course-item">
+        <p class="course-code">HU404</p>
+        <p class="course-name">PUBLIC FINANCE AND POLICY (E8)</p>
+      </div>
+      <div class="course-item">
+        <p class="course-code">HU428</p>
+        <p class="course-name">Adaptation And Translation (E9)</p>
+      </div>
+      <div class="course-item">
+        <p class="course-code">IT402</p>
+        <p class="course-name">B.TECH. PROJECT-II (Compulsory)</p>
+      </div>
+      <div class="course-item">
+        <p class="course-code">MOOC406</p>
+        <p class="course-name">MOOC Course (MOOC)</p>
+      </div>
+    </div>
+
+    <div class="right-links-row">
+      <a href="{{ url_for('student.notifications') }}" class="right-link">Notifications</a>
+      <a href="{{ url_for('static', filename='DS_TEN_BTECH_E26.pdf') }}" target="_blank" class="right-link">DateSheet</a>
+    </div>
+
+    <div class="right-extra-links">
+      <a href="{{ url_for('student.backlogs') }}" class="right-link-block">How to pay re-registration course(s) fee at SBI Collect.</a>
+      <a href="{{ url_for('student.fee_status') }}" class="right-link-block">Registration fee details</a>
+    </div>
+  </aside>
+
+</div>
+{% endblock %}

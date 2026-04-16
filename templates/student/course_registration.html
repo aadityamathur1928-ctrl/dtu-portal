@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% block title %}Course Registration – DTU Portal{% endblock %}
+
+{% block content %}
+<div class="cr-page">
+
+  <!-- Top title bar -->
+  <div class="cr-title-bar">Course Registration : EVEN sem</div>
+  <p class="cr-subtitle">Course registration slip (Registration will be locked)</p>
+
+  <!-- Summary table -->
+  <table class="cr-summary">
+    <thead>
+      <tr>
+        <th>Roll Number</th>
+        <th>Current Degree</th>
+        <th>Branch</th>
+        <th>Semester</th>
+        <th>Session</th>
+        <th>Credits Registered</th>
+        <th>Max Credits</th>
+        <th>Max Electives</th>
+        <th>Min Credits</th>
+        <th>Registration Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2K22/IT/01</td>
+        <td>BTECH</td>
+        <td>IT</td>
+        <td>8</td>
+        <td>MAY 2026</td>
+        <td>20</td>
+        <td>32</td>
+        <td>10</td>
+        <td>4</td>
+        <td><span class="cr-status-completed">Completed</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Compulsory Courses -->
+  <h2 class="cr-section-title">Compulsory Courses</h2>
+  <table class="cr-courses-table">
+    <thead>
+      <tr>
+        <th>Course Name</th>
+        <th>Course Code</th>
+        <th>Credits</th>
+        <th>Register/Drop</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-registered">
+        <td>B.TECH. PROJECT-II</td>
+        <td>IT402</td>
+        <td>8</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Legend -->
+  <div class="cr-legend">
+    <div class="legend-item"><span class="swatch swatch-registered"></span>Registered Course</div>
+    <div class="legend-item"><span class="swatch swatch-dept"></span>Department Course<br/><span class="legend-sub">(Can be registered by dept. students)</span></div>
+    <div class="legend-item"><span class="swatch swatch-withdrawn"></span>Withdrawn Course<br/><span class="legend-sub">(Please drop if registered)</span></div>
+    <div class="legend-item"><span class="swatch swatch-blocked"></span>Blocked Course</div>
+  </div>
+
+  <!-- Elective Courses -->
+  <h2 class="cr-section-title">Elective Courses</h2>
+  <table class="cr-courses-table">
+    <thead>
+      <tr>
+        <th>Course Name</th>
+        <th>Course Code</th>
+        <th>Credits</th>
+        <th>Slot</th>
+        <th>Seats</th>
+        <th>Register/Drop</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- GEC banner -->
+      <tr class="row-group-banner"><td colspan="6">GEC (Min: 0, Max: 6,Current: 2)</td></tr>
+
+      <!-- Slot E1 -->
+      <tr class="row-slot"><td colspan="5">Slot E1</td><td class="slot-caret">⌄</td></tr>
+      <tr><td>MONEY, BANKING AND FINANCE</td><td>HU306</td><td>4</td><td>E1</td><td>0</td><td></td></tr>
+      <tr><td>Rhetoric And Public Speaking</td><td>HU326</td><td>4</td><td>E1</td><td>0</td><td></td></tr>
+      <tr class="row-withdrawn"><td>COMPILER DESIGN</td><td>IT302</td><td>4</td><td>E1</td><td>74</td><td></td></tr>
+
+      <!-- Slot E2 -->
+      <tr class="row-slot"><td colspan="5">Slot E2</td><td class="slot-caret">⌄</td></tr>
+      <tr><td>Industrial Waste Management</td><td>CH416</td><td>4</td><td>E2</td><td>1</td><td></td></tr>
+      <tr class="row-blocked"><td>Professional Writing Skills</td><td>HU318</td><td>4</td><td>E2</td><td>0</td><td></td></tr>
+      <tr><td>Theatre And Stagecraft</td><td>HU328</td><td>4</td><td>E2</td><td>0</td><td></td></tr>
+      <tr class="row-withdrawn"><td>SOFTWARE ENGINEERING</td><td>IT304</td><td>4</td><td>E2</td><td>72</td><td></td></tr>
+      <tr class="row-withdrawn"><td>COMPUTER VISION</td><td>IT420</td><td>4</td><td>E2</td><td>72</td><td></td></tr>
+      <tr><td>International Marketing</td><td>MBAMK220</td><td>4</td><td>E2</td><td>0</td><td></td></tr>
+      <tr><td>International Logistics Management</td><td>MBASC220</td><td>4</td><td>E2</td><td>0</td><td></td></tr>
+
+      <!-- Slot E3 -->
+      <tr class="row-slot"><td colspan="5">Slot E3</td><td class="slot-caret">⌄</td></tr>
+      <tr><td>Safety &amp; Hazards in Chemical Industries</td><td>CH424</td><td>4</td><td>E3</td><td>52</td><td></td></tr>
+      <tr><td>INTERNATIONAL ECONOMICS</td><td>HU310</td><td>4</td><td>E3</td><td>0</td><td></td></tr>
+      <tr class="row-blocked"><td>Professional Writing Skills</td><td>HU318</td><td>4</td><td>E3</td><td>0</td><td></td></tr>
+      <tr><td>Theatre And Stagecraft</td><td>HU328</td><td>4</td><td>E3</td><td>0</td><td></td></tr>
+      <tr><td>Operations and SCM</td><td>MBA108</td><td>4</td><td>E3</td><td>0</td><td></td></tr>
+      <tr><td>DATABASE MANAGEMENT SYSTEMS</td><td>CO202</td><td>4</td><td>E3</td><td>37</td><td></td></tr>
+
+      <!-- Slot E4 -->
+      <tr class="row-slot"><td colspan="5">Slot E4</td><td class="slot-caret">⌄</td></tr>
+      <tr class="row-blocked"><td>MATHEMATICAL ECONOMICS</td><td>HU308</td><td>4</td><td>E4</td><td>0</td><td></td></tr>
+      <tr class="row-blocked"><td>PUBLIC FINANCE AND POLICY</td><td>HU404</td><td>4</td><td>E4</td><td>0</td><td></td></tr>
+      <tr><td>Language And Social Media</td><td>HU426</td><td>4</td><td>E4</td><td>0</td><td></td></tr>
+      <tr class="row-withdrawn"><td>ARTIFICIAL INTELLIGENCE AND EXPERT SYSTEMS</td><td>IT306</td><td>4</td><td>E4</td><td>70</td><td></td></tr>
+      <tr class="row-blocked"><td>Business Research Methods</td><td>MBA104</td><td>4</td><td>E4</td><td>0</td><td></td></tr>
+
+      <!-- Slot E5 -->
+      <tr class="row-slot"><td colspan="5">Slot E5</td><td class="slot-caret">⌄</td></tr>
+      <tr class="row-blocked"><td>MICROECONOMICS</td><td>HU312</td><td>4</td><td>E5</td><td>0</td><td></td></tr>
+      <tr><td>Rhetoric And Public Speaking</td><td>HU326</td><td>4</td><td>E5</td><td>0</td><td></td></tr>
+
+      <!-- Slot E6 -->
+      <tr class="row-slot"><td colspan="5">Slot E6</td><td class="slot-caret">⌄</td></tr>
+      <tr class="row-withdrawn"><td>BIG DATA ANALYTICS</td><td>IT404</td><td>4</td><td>E6</td><td>144</td><td></td></tr>
+
+      <!-- Slot E7 -->
+      <tr class="row-slot"><td colspan="5">Slot E7</td><td class="slot-caret">⌄</td></tr>
+      <tr class="row-withdrawn"><td>Computer Integrated Manufacturing</td><td>AE404</td><td>4</td><td>E7</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Total life cycle Management</td><td>AE406</td><td>4</td><td>E7</td><td>67</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Advances in Computational Biology</td><td>BT404</td><td>4</td><td>E7</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Construction Technology and Management</td><td>CE404</td><td>4</td><td>E7</td><td>67</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Computational Geo-Mechanics</td><td>CE408</td><td>4</td><td>E7</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>WIRELESS COMMUNICATION</td><td>EC404</td><td>4</td><td>E7</td><td>71</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Pattern Recognition</td><td>EC416</td><td>4</td><td>E7</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Radar and Satellite Communication</td><td>EC438</td><td>4</td><td>E7</td><td>73</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Power System Dynamics &amp; Stability</td><td>EE404</td><td>4</td><td>E7</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Distribution Systems Analysis &amp; Control</td><td>EE406</td><td>4</td><td>E7</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Restructured Power Systems</td><td>EE408</td><td>4</td><td>E7</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Power System Planning</td><td>EE410</td><td>4</td><td>E7</td><td>73</td><td></td></tr>
+      <tr class="row-withdrawn"><td>High Voltage Engineering</td><td>EE412</td><td>4</td><td>E7</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Distributed Generation</td><td>EE414</td><td>4</td><td>E7</td><td>75</td><td></td></tr>
+      <tr><td>ENVIRONMENT AND SUSTAINABLE DEVELOPMENT</td><td>EN412</td><td>4</td><td>E7</td><td>2</td><td></td></tr>
+      <tr><td>CYBER FORENSICS</td><td>IT312</td><td>4</td><td>E7</td><td>42</td><td></td></tr>
+      <tr><td>COMPUTER VISION</td><td>IT420</td><td>4</td><td>E7</td><td>70</td><td></td></tr>
+      <tr><td>Optimization Techniques</td><td>MC418</td><td>4</td><td>E7</td><td>14</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Industrial Engineering</td><td>ME404</td><td>4</td><td>E7</td><td>147</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Elastic &amp; Plastic Behacior of materials</td><td>ME406</td><td>4</td><td>E7</td><td>72</td><td></td></tr>
+      <tr><td>Combustion Generated Pollution</td><td>ME408</td><td>4</td><td>E7</td><td>119</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Total quality Management</td><td>PE404</td><td>4</td><td>E7</td><td>70</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Manufacturing and application of Polymer Composites</td><td>PE406</td><td>4</td><td>E7</td><td>75</td><td></td></tr>
+      <tr><td>Big Data Anylatics</td><td>SE416</td><td>4</td><td>E7</td><td>44</td><td></td></tr>
+
+      <!-- Slot E9 -->
+      <tr class="row-slot"><td colspan="5">Slot E9</td><td class="slot-caret">⌄</td></tr>
+      <tr class="row-withdrawn"><td>Traffic Engineering</td><td>CE420</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Vulnerability and Risk Analysis</td><td>CE422</td><td>4</td><td>E9</td><td>71</td><td></td></tr>
+      <tr class="row-blocked"><td>Hazard Monitoring, Prediction and Mitigation</td><td>CE424</td><td>4</td><td>E9</td><td>52</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Retrofitting of Structures</td><td>CE426</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-blocked"><td>Machine Learning</td><td>EC412</td><td>4</td><td>E9</td><td>55</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Bio Impedance based Measurment</td><td>EC432</td><td>4</td><td>E9</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Digital Image Processing</td><td>EE428</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Filter Design</td><td>EE430</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>AI and Expert Systems</td><td>EE432</td><td>4</td><td>E9</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Computer Control of Processes</td><td>EE434</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Nonlinear and Adaptive Control</td><td>EE436</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Advanced Open Channel Hydraulics</td><td>EN406</td><td>4</td><td>E9</td><td>73</td><td></td></tr>
+      <tr class="row-registered"><td>Adaptation And Translation</td><td>HU428</td><td>4</td><td>E9</td><td>3</td><td></td></tr>
+      <tr class="row-withdrawn"><td>MOBILE AND DIGITAL FORENSICS</td><td>IT428</td><td>4</td><td>E9</td><td>216</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Fuel Cells</td><td>ME422</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Flexible Manufacturing System</td><td>PE414</td><td>4</td><td>E9</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Advance Manufacturing Process</td><td>PE418</td><td>4</td><td>E9</td><td>74</td><td></td></tr>
+
+      <!-- Slot E10 -->
+      <tr class="row-slot"><td colspan="5">Slot E10</td><td class="slot-caret">⌄</td></tr>
+      <tr class="row-blocked"><td>Vehicle safety Engineering</td><td>AE420</td><td>4</td><td>E10</td><td>33</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Mechatronics</td><td>AE424</td><td>4</td><td>E10</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Bioethics and IPR</td><td>BT408</td><td>4</td><td>E10</td><td>72</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Catalysis</td><td>CH406</td><td>4</td><td>E10</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>DEEP LEARNING</td><td>EC458</td><td>4</td><td>E10</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>SCADA &amp; Energy Management Systems</td><td>EE440</td><td>4</td><td>E10</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Robotics and Machine Vision</td><td>EE442</td><td>4</td><td>E10</td><td>75</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Utilization of Electrical Energy &amp; Traction</td><td>EE444</td><td>4</td><td>E10</td><td>74</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Data Communication and Computer Networks</td><td>EE446</td><td>4</td><td>E10</td><td>75</td><td></td></tr>
+      <tr class="row-blocked"><td>Big Data Analytics</td><td>EE448</td><td>4</td><td>E10</td><td>42</td><td></td></tr>
+      <tr class="row-blocked"><td>Adaptation And Translation</td><td>HU428</td><td>4</td><td>E10</td><td>2</td><td></td></tr>
+      <tr class="row-withdrawn"><td>SPEECH AND NATURAL LANGUAGE UNDERSTANDING</td><td>IT430</td><td>4</td><td>E10</td><td>147</td><td></td></tr>
+      <tr class="row-withdrawn"><td>Materials Management</td><td>ME420</td><td>4</td><td>E10</td><td>143</td><td></td></tr>
+      <tr class="row-blocked"><td>Work study &amp; Ergonomics</td><td>PE416</td><td>4</td><td>E10</td><td>52</td><td></td></tr>
+      <tr><td>Cloud Computing</td><td>SE414</td><td>4</td><td>E10</td><td>44</td><td></td></tr>
+
+      <!-- MOOC banner -->
+      <tr class="row-group-banner"><td colspan="6">MOOC (Min: 0, Max: 2,Current: 1)</td></tr>
+      <tr class="row-slot"><td colspan="5">Slot MOOC</td><td class="slot-caret">⌄</td></tr>
+      <tr class="row-registered">
+        <td>MOOC Course</td><td>MOOC406</td><td>4</td><td>MOOC</td><td>9999</td>
+        <td class="cr-actions">
+          <button type="button" class="btn-register">Register</button>
+          <button type="button" class="btn-drop">Drop</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}

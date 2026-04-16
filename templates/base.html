@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}DTU Examination Portal{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+{% if current_user.is_authenticated %}
+<!-- ── Top Nav ──────────────────────────────────────────────────────────── -->
+<header class="dtu-topnav">
+  <div class="dtu-topnav-left">
+    <img src="{{ url_for('static', filename='img/dd.png') }}" alt="DTU" class="dtu-logo-mark" />
+    <span class="dtu-univ-name">Delhi Technological University</span>
+    <a href="{{ url_for('student.dashboard') }}"
+       class="dtu-nav-link {% if request.endpoint == 'student.dashboard' %}active{% endif %}">Home</a>
+    <a href="{{ url_for('student.results') }}"
+       class="dtu-nav-link {% if request.endpoint == 'student.results' %}active{% endif %}">Results</a>
+  </div>
+  <div class="dtu-topnav-right">
+    <span class="dtu-hello">Hello {{ current_user.name.split()[0]|upper }}</span>
+    <a href="{{ url_for('auth.logout') }}" class="dtu-nav-link">Logout</a>
+  </div>
+</header>
+
+<!-- Flash messages -->
+<div class="flash-container flash-topnav">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        <span>{{ message }}</span>
+        <button onclick="this.parentElement.remove()">✕</button>
+      </div>
+    {% endfor %}
+  {% endwith %}
+</div>
+
+<main class="dtu-page">
+  {% block content %}{% endblock %}
+</main>
+
+{% else %}
+<!-- Public pages (login/register) -->
+<div class="flash-container flash-public">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        <span>{{ message }}</span>
+        <button onclick="this.parentElement.remove()">✕</button>
+      </div>
+    {% endfor %}
+  {% endwith %}
+</div>
+{{ self.content() }}
+{% endif %}
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
