@@ -26,6 +26,11 @@ def create_app():
     def index():
         return redirect(url_for('auth.login'))
 
+    # Lightweight health check – used by the keep-warm cron.
+    @app.route('/healthz')
+    def healthz():
+        return 'ok', 200
+
     # User loader
     from models import Student
 
