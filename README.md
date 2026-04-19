@@ -102,7 +102,7 @@ The app will:
 
 ```
 Email:    demo@dtu.ac.in
-Password: demo1234
+Password: nmke3391
 ```
 
 ---

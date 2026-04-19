@@ -2,6 +2,56 @@
 {% block title %}Result – DTU Portal{% endblock %}
 
 {% block content %}
+{% if current_user.roll_number == '22/CO/504' %}
+  {% set r = {
+    'programme_line': 'Bachelor of Technology(Computer Engineering), VII-SEMESTER',
+    'sem_range': 'Semesters I – VII',
+    'sem_count': 7,
+    'display_roll': '2K22/CO/504',
+    'display_name': 'VISHNU SINGH POONIA',
+    'sr_no': 84,
+    'course_codes': ['BT411', 'CE431a', 'CO401', 'CO403', 'CO407', 'MOOC405'],
+    'course_credits': ['4.00', '4.00', '4.00', '2.00', '4.00', '4.00'],
+    'grades': ['A', 'B+', 'B', 'A', 'C', 'A+'],
+    'sgpa': '7.45',
+    'tc': 22,
+    'cgpa': '7.22987',
+    'notif_no': '2047',
+    'legend': [
+      ('BT411', 'INDUSTRIAL BIOTECHNOLOGY'),
+      ('CE431a', 'CYCLONIC HAZARD ASSESSMENT AND MITIGATION'),
+      ('CO401', 'B.TECH PROJECT-I'),
+      ('CO403', 'TRAINING SEMINAR'),
+      ('CO407', 'INFORMATION AND NETWORK SECURITY'),
+      ('MOOC405', 'MOOC COURSE')
+    ]
+  } %}
+{% else %}
+  {% set r = {
+    'programme_line': 'Bachelor of Technology(Information Technology), VII-SEMESTER',
+    'sem_range': 'Semesters I – VII',
+    'sem_count': 7,
+    'display_roll': '2K22/IT/01',
+    'display_name': 'AADITYA MATHUR',
+    'sr_no': 49,
+    'course_codes': ['BT411', 'CE431a', 'IT401', 'IT403', 'IT407', 'MOOC405'],
+    'course_credits': ['4.00', '4.00', '4.00', '2.00', '4.00', '4.00'],
+    'grades': ['O', 'O', 'O', 'O', 'O', 'A+'],
+    'sgpa': '9.86',
+    'tc': 22,
+    'cgpa': '8.29012',
+    'notif_no': '1932',
+    'legend': [
+      ('BT411', 'INDUSTRIAL BIOTECHNOLOGY'),
+      ('CE431a', 'CYCLONIC HAZARD ASSESSMENT AND MITIGATION'),
+      ('IT401', 'B.TECH PROJECT-I'),
+      ('IT403', 'TRAINING SEMINAR'),
+      ('IT407', 'INFORMATION AND NETWORK SECURITY'),
+      ('MOOC405', 'MOOC COURSE')
+    ]
+  } %}
+{% endif %}
+
 <div class="rs-page">
 
   <!-- Official notification header -->
@@ -14,11 +64,11 @@
   <hr class="rs-hr" />
 
   <p class="rs-lede">THE RESULT OF THE CANDIDATE WHO APPEARED IN THE FOLLOWING EXAMINATION HELD IN NOV 2025 IS DECLARED AS UNDER:-</p>
-  <p class="rs-programme">Bachelor of Technology(Information Technology), VII-SEMESTER</p>
+  <p class="rs-programme">{{ r.programme_line }}</p>
 
   <div class="rs-meta">
     <span><strong>Result Declaration Date :</strong> 12-Feb-2026</span>
-    <span><strong>Notification No:</strong> 1932</span>
+    <span><strong>Notification No:</strong> {{ r.notif_no }}</span>
   </div>
 
   <!-- Result table -->
@@ -29,38 +79,23 @@
           <th rowspan="2">Sr.No</th>
           <th rowspan="2">Roll No.</th>
           <th rowspan="2">Name of Student</th>
-          <th>BT411</th>
-          <th>CE431a</th>
-          <th>IT401</th>
-          <th>IT403</th>
-          <th>IT407</th>
-          <th>MOOC405</th>
+          {% for c in r.course_codes %}<th>{{ c }}</th>{% endfor %}
           <th rowspan="2">SGPA</th>
           <th rowspan="2">TC</th>
           <th rowspan="2">Failed Courses</th>
         </tr>
         <tr>
-          <th>4.00</th>
-          <th>4.00</th>
-          <th>4.00</th>
-          <th>2.00</th>
-          <th>4.00</th>
-          <th>4.00</th>
+          {% for cr in r.course_credits %}<th>{{ cr }}</th>{% endfor %}
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>49</td>
-          <td>2K22/IT/01</td>
-          <td class="rs-name">AADITYA MATHUR</td>
-          <td>O</td>
-          <td>O</td>
-          <td>O</td>
-          <td>O</td>
-          <td>O</td>
-          <td>A+</td>
-          <td class="rs-sgpa">9.86</td>
-          <td>22</td>
+          <td>{{ r.sr_no }}</td>
+          <td>{{ r.display_roll }}</td>
+          <td class="rs-name">{{ r.display_name }}</td>
+          {% for g in r.grades %}<td>{{ g }}</td>{% endfor %}
+          <td class="rs-sgpa">{{ r.sgpa }}</td>
+          <td>{{ r.tc }}</td>
           <td></td>
         </tr>
       </tbody>
@@ -69,22 +104,18 @@
 
   <!-- Subject legend -->
   <div class="rs-subjects">
-    <strong>BT411</strong> : INDUSTRIAL BIOTECHNOLOGY &nbsp;&nbsp;
-    <strong>CE431a</strong> : CYCLONIC HAZARD ASSESSMENT AND MITIGATION &nbsp;&nbsp;
-    <strong>IT401</strong> : B.TECH PROJECT-I &nbsp;&nbsp;
-    <strong>IT403</strong> : TRAINING SEMINAR &nbsp;&nbsp;
-    <strong>IT407</strong> : INFORMATION AND NETWORK SECURITY &nbsp;&nbsp;
-    <strong>MOOC405</strong> : MOOC COURSE
+    {% for code, title in r.legend %}<strong>{{ code }}</strong> : {{ title }} &nbsp;&nbsp;
+    {% endfor %}
   </div>
 
   <!-- Aggregate CGPA -->
   <div class="rs-cgpa-card">
     <div class="rs-cgpa-left">
-      <span class="rs-cgpa-label">Aggregate CGPA (Semesters I – VII)</span>
-      <span class="rs-cgpa-sub">Based on 7 semesters of coursework</span>
+      <span class="rs-cgpa-label">Aggregate CGPA ({{ r.sem_range }})</span>
+      <span class="rs-cgpa-sub">Based on {{ r.sem_count }} semesters of coursework</span>
     </div>
     <div class="rs-cgpa-right">
-      <span class="rs-cgpa-value">8.29012</span>
+      <span class="rs-cgpa-value">{{ r.cgpa }}</span>
     </div>
   </div>
 

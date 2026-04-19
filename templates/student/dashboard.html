@@ -2,12 +2,61 @@
 {% block title %}Home – DTU Portal{% endblock %}
 
 {% block content %}
+{# Per-student profile data – keyed by roll number. #}
+{% if current_user.roll_number == '22/CO/504' %}
+  {% set p = {
+    'photo': 'img/vis.png',
+    'branch_display': 'Computer Engineering',
+    'abc_id': 'a',
+    'aadhar': '0',
+    'category': 'OBC',
+    'religion_hindi': 'NULL',
+    'personal_email': 'poonia.vishnu2004@gmail.com',
+    'dtu_email': 'vishnusinghpoonia_co22a8_20@dtu.ac.in',
+    'mobile': '9718325800',
+    'father_name': 'AJIT SINGH',
+    'father_mobile': 'NULL',
+    'mother_name': 'RITU RANI',
+    'address': 'B2-401, P.T.S, SECTOR-9, DWARKA, SOUTH WEST DELHI, DELHI (NCT), INDIA 110075',
+    'password': 'vishnu504',
+    'courses': [
+      {'code': 'HU404', 'name': 'PUBLIC FINANCE AND POLICY (E8)'},
+      {'code': 'HU428', 'name': 'Adaptation And Translation (E9)'},
+      {'code': 'CO402', 'name': 'B.TECH. PROJECT-II (Compulsory)'},
+      {'code': 'MOOC406', 'name': 'MOOC Course (MOOC)'}
+    ]
+  } %}
+{% else %}
+  {% set p = {
+    'photo': 'img/aa.png',
+    'branch_display': 'Information Technology',
+    'abc_id': '921-898-086-810',
+    'aadhar': '0',
+    'category': 'OBC',
+    'religion_hindi': 'NULL',
+    'personal_email': 'aadityamathur1077@gmail.com',
+    'dtu_email': 'aadityamathur_it22a8_35@dtu.ac.in',
+    'mobile': '8368913647',
+    'father_name': 'SANJEEV KUMAR',
+    'father_mobile': '8368919321',
+    'mother_name': 'RAJNESH',
+    'address': 'H.NO.1055 OPPOSITE VETERINARY HOSPITAL, , KARALA, NORTH WEST DELHI, DELHI (NCT), INDIA 110081',
+    'password': 'nmke3391',
+    'courses': [
+      {'code': 'HU404', 'name': 'PUBLIC FINANCE AND POLICY (E8)'},
+      {'code': 'HU428', 'name': 'Adaptation And Translation (E9)'},
+      {'code': 'IT402', 'name': 'B.TECH. PROJECT-II (Compulsory)'},
+      {'code': 'MOOC406', 'name': 'MOOC Course (MOOC)'}
+    ]
+  } %}
+{% endif %}
+
 <div class="dtu-profile-grid">
 
   <!-- ── Left column: Photo + Upload + Name ─────────────────────────── -->
   <aside class="profile-left">
     <div class="profile-photo-frame">
-      <img src="{{ url_for('static', filename='img/aa.png') }}" alt="Student photo" />
+      <img src="{{ url_for('static', filename=p.photo) }}" alt="Student photo" />
     </div>
 
     <form class="photo-upload" onsubmit="event.preventDefault();">
@@ -30,7 +79,7 @@
       <h2 class="profile-name">{{ current_user.name|upper }}</h2>
       <p class="profile-roll">{{ current_user.roll_number }}</p>
       <p class="profile-programme">BTECH</p>
-      <p class="profile-branch">Information Technology</p>
+      <p class="profile-branch">{{ p.branch_display }}</p>
     </div>
   </aside>
 
@@ -41,37 +90,37 @@
 
     <div class="profile-fields">
       <div class="pf-row"><span class="pf-label">Full Name</span><span class="pf-value">{{ current_user.name|upper }}</span></div>
-      <div class="pf-row"><span class="pf-label">ABC ID</span><span class="pf-value">921-898-086-810</span></div>
-      <div class="pf-row"><span class="pf-label">Aadhar No.</span><span class="pf-value">0</span></div>
-      <div class="pf-row"><span class="pf-label">Category</span><span class="pf-value">OBC</span></div>
+      <div class="pf-row"><span class="pf-label">ABC ID</span><span class="pf-value">{{ p.abc_id }}</span></div>
+      <div class="pf-row"><span class="pf-label">Aadhar No.</span><span class="pf-value">{{ p.aadhar }}</span></div>
+      <div class="pf-row"><span class="pf-label">Category</span><span class="pf-value">{{ p.category }}</span></div>
       <div class="pf-row pf-row-stack">
         <span class="pf-label">Religon</span>
         <span class="pf-sub-label">Hindi Name(Please update this will be printed in degree)</span>
-        <span class="pf-value-inline">NULL</span>
+        <span class="pf-value-inline">{{ p.religion_hindi }}</span>
       </div>
-      <div class="pf-row"><span class="pf-label">Personal Email</span><span class="pf-value">aadityamathur1077@gmail.com</span></div>
-      <div class="pf-row"><span class="pf-label">DTU Email</span><span class="pf-value">aadityamathur_it22a8_35@dtu.ac.in</span></div>
-      <div class="pf-row"><span class="pf-label">Mobile No.</span><span class="pf-value">8368913647</span></div>
+      <div class="pf-row"><span class="pf-label">Personal Email</span><span class="pf-value">{{ p.personal_email }}</span></div>
+      <div class="pf-row"><span class="pf-label">DTU Email</span><span class="pf-value">{{ p.dtu_email }}</span></div>
+      <div class="pf-row"><span class="pf-label">Mobile No.</span><span class="pf-value">{{ p.mobile }}</span></div>
       <div class="pf-row pf-row-stack">
         <span class="pf-label">Family Income</span>
         <span class="pf-sub-label">Father Name</span>
-        <span class="pf-value-inline">SANJEEV KUMAR</span>
+        <span class="pf-value-inline">{{ p.father_name }}</span>
       </div>
-      <div class="pf-row"><span class="pf-label">Father's Mobile No.</span><span class="pf-value">8368919321</span></div>
+      <div class="pf-row"><span class="pf-label">Father's Mobile No.</span><span class="pf-value">{{ p.father_mobile }}</span></div>
       <div class="pf-row pf-row-stack">
         <span class="pf-label">Father's Email</span>
         <span class="pf-sub-label">Mother Name</span>
-        <span class="pf-value-inline">RAJNESH</span>
+        <span class="pf-value-inline">{{ p.mother_name }}</span>
       </div>
       <div class="pf-row pf-row-address">
-        <span class="pf-label pf-inline-label">Address</span><span class="pf-address-text">H.NO.1055 OPPOSITE VETERINARY HOSPITAL, , KARALA, NORTH WEST DELHI, DELHI (NCT), INDIA 110081</span>
+        <span class="pf-label pf-inline-label">Address</span><span class="pf-address-text">{{ p.address }}</span>
       </div>
       <div class="pf-row"><span class="pf-label">Permanent Address</span><span class="pf-value"></span></div>
       <div class="pf-row"><span class="pf-label">Nationality</span><span class="pf-value">INDIAN</span></div>
       <div class="pf-row"><span class="pf-label">Semester</span><span class="pf-value">{{ current_user.semester }}</span></div>
       <div class="pf-row pf-row-password">
         <span class="pf-label">Password</span>
-        <span class="pf-value pf-pw" id="pfPassword" data-pw="nmke3391">***********</span>
+        <span class="pf-value pf-pw" id="pfPassword" data-pw="{{ p.password }}">***********</span>
         <button type="button" class="btn-show-pw" id="pfPwToggle"
                 onclick="(function(b){var s=document.getElementById('pfPassword');if(b.innerText==='Show'){s.innerText=s.dataset.pw;b.innerText='Hide';}else{s.innerText='***********';b.innerText='Show';}})(this)">Show</button>
       </div>
@@ -86,22 +135,12 @@
 
     <h3 class="courses-title">Courses Registered</h3>
     <div class="courses-list">
+      {% for c in p.courses %}
       <div class="course-item">
-        <p class="course-code">HU404</p>
-        <p class="course-name">PUBLIC FINANCE AND POLICY (E8)</p>
+        <p class="course-code">{{ c.code }}</p>
+        <p class="course-name">{{ c.name }}</p>
       </div>
-      <div class="course-item">
-        <p class="course-code">HU428</p>
-        <p class="course-name">Adaptation And Translation (E9)</p>
-      </div>
-      <div class="course-item">
-        <p class="course-code">IT402</p>
-        <p class="course-name">B.TECH. PROJECT-II (Compulsory)</p>
-      </div>
-      <div class="course-item">
-        <p class="course-code">MOOC406</p>
-        <p class="course-name">MOOC Course (MOOC)</p>
-      </div>
+      {% endfor %}
     </div>
 
     <div class="right-links-row">

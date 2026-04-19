@@ -2,6 +2,30 @@
 {% block title %}Fee Payment Status – DTU Portal{% endblock %}
 
 {% block content %}
+{% if current_user.roll_number == '22/CO/504' %}
+  {% set f = {
+    'year_label': '4th Year Fee',
+    'year_amount': '₹2,46,723',
+    'programme': 'B.Tech · Computer Engineering',
+    'account_year': '2022 – 2026',
+    'total_sem': 8,
+    'paid_sem': 8,
+    'outstanding': '₹0',
+    'last_payment': '13 Aug 2025'
+  } %}
+{% else %}
+  {% set f = {
+    'year_label': '4th Year Fee',
+    'year_amount': '₹2,46,723',
+    'programme': 'B.Tech · Information Technology',
+    'account_year': '2022 – 2026',
+    'total_sem': 8,
+    'paid_sem': 8,
+    'outstanding': '₹0',
+    'last_payment': '12 Aug 2025'
+  } %}
+{% endif %}
+
 <div class="fee-page">
 
   <!-- Header / banner -->
@@ -14,8 +38,8 @@
       <p>Every semester's Registration Fees has been successfully received through SBI Collect.</p>
     </div>
     <div class="fee-hero-amount">
-      <span class="fee-amount-label">4th Year Fee</span>
-      <span class="fee-amount-value">₹2,46,723</span>
+      <span class="fee-amount-label">{{ f.year_label }}</span>
+      <span class="fee-amount-value">{{ f.year_amount }}</span>
     </div>
   </div>
 
@@ -23,27 +47,27 @@
   <div class="fee-student-row">
     <div><span class="fsr-label">Student</span><span class="fsr-value">{{ current_user.name|upper }}</span></div>
     <div><span class="fsr-label">Roll Number</span><span class="fsr-value">{{ current_user.roll_number }}</span></div>
-    <div><span class="fsr-label">Programme</span><span class="fsr-value">B.Tech · Information Technology</span></div>
-    <div><span class="fsr-label">Account Year</span><span class="fsr-value">2022 – 2026</span></div>
+    <div><span class="fsr-label">Programme</span><span class="fsr-value">{{ f.programme }}</span></div>
+    <div><span class="fsr-label">Account Year</span><span class="fsr-value">{{ f.account_year }}</span></div>
   </div>
 
   <!-- Summary cards -->
   <div class="fee-summary-grid">
     <div class="fee-summary-card">
       <span class="fsc-label">Total Semesters</span>
-      <span class="fsc-value">8</span>
+      <span class="fsc-value">{{ f.total_sem }}</span>
     </div>
     <div class="fee-summary-card">
       <span class="fsc-label">Semesters Paid</span>
-      <span class="fsc-value green">8</span>
+      <span class="fsc-value green">{{ f.paid_sem }}</span>
     </div>
     <div class="fee-summary-card">
       <span class="fsc-label">Outstanding Dues</span>
-      <span class="fsc-value green">₹0</span>
+      <span class="fsc-value green">{{ f.outstanding }}</span>
     </div>
     <div class="fee-summary-card">
       <span class="fsc-label">Last Payment</span>
-      <span class="fsc-value">12 Aug 2025</span>
+      <span class="fsc-value">{{ f.last_payment }}</span>
     </div>
   </div>
 

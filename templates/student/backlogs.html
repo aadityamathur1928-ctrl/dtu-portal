@@ -2,8 +2,19 @@
 {% block title %}Backlog Status – DTU Portal{% endblock %}
 
 {% block content %}
+{% set has_backlog = current_user.roll_number == '22/CO/504' %}
+
 <div class="backlog-page">
 
+  {% if has_backlog %}
+  <div class="backlog-hero red">
+    <div class="backlog-hero-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="44" height="44"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <h1>You have 1 pending backlog</h1>
+    <p>4 backlogs have been cleared so far. 1 paper still requires re-registration before the degree can be awarded.</p>
+  </div>
+  {% else %}
   <div class="backlog-hero">
     <div class="backlog-hero-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="44" height="44"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -11,6 +22,7 @@
     <h1>You have no backlogs</h1>
     <p>All courses from Semester 1 through Semester {{ current_user.semester }} are cleared. Nothing pending, nothing due for re-registration.</p>
   </div>
+  {% endif %}
 
   <div class="backlog-summary-grid">
     <div class="backlog-summary-card">
@@ -18,20 +30,83 @@
       <span class="bsc-value">{{ current_user.semester - 1 }} / 8</span>
     </div>
     <div class="backlog-summary-card">
+      <span class="bsc-label">Backlogs Cleared</span>
+      <span class="bsc-value {% if has_backlog %}{% else %}green{% endif %}">{% if has_backlog %}4{% else %}0{% endif %}</span>
+    </div>
+    <div class="backlog-summary-card">
       <span class="bsc-label">Pending Courses</span>
-      <span class="bsc-value green">0</span>
+      <span class="bsc-value {% if has_backlog %}red{% else %}green{% endif %}">{% if has_backlog %}1{% else %}0{% endif %}</span>
     </div>
     <div class="backlog-summary-card">
       <span class="bsc-label">Re-registration Required</span>
-      <span class="bsc-value green">None</span>
+      <span class="bsc-value {% if has_backlog %}red{% else %}green{% endif %}">{% if has_backlog %}Yes{% else %}None{% endif %}</span>
     </div>
   </div>
 
+  {% if has_backlog %}
+  <h2 class="backlog-section-title">Backlog History</h2>
+  <table class="backlog-table">
+    <thead>
+      <tr>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>Semester</th>
+        <th>Attempt</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MA201</td>
+        <td>Engineering Mathematics – II</td>
+        <td>2</td>
+        <td>Re-registered (Sem 4)</td>
+        <td class="backlog-status-cleared">Cleared</td>
+      </tr>
+      <tr>
+        <td>CO205</td>
+        <td>Digital Electronics</td>
+        <td>3</td>
+        <td>Re-registered (Sem 5)</td>
+        <td class="backlog-status-cleared">Cleared</td>
+      </tr>
+      <tr>
+        <td>CO303</td>
+        <td>Database Management Systems</td>
+        <td>5</td>
+        <td>Re-registered (Sem 6)</td>
+        <td class="backlog-status-cleared">Cleared</td>
+      </tr>
+      <tr>
+        <td>CO307</td>
+        <td>Compiler Design</td>
+        <td>6</td>
+        <td>Re-registered (Sem 7)</td>
+        <td class="backlog-status-cleared">Cleared</td>
+      </tr>
+      <tr>
+        <td>CO401</td>
+        <td>Machine Learning</td>
+        <td>7</td>
+        <td>First Attempt</td>
+        <td class="backlog-status-pending">Pending · Re-registration Required</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="backlog-note red">
+    <strong>Note:</strong> You have <strong>1 pending paper</strong> (CO401 – Machine Learning).
+    Complete SBI Collect re-registration payment before the deadline to appear in the supplementary examination.
+    Unresolved backlogs will hold your final degree. For assistance, contact the Examination Branch at
+    <a href="mailto:examdtu@gmail.com">examdtu@gmail.com</a>.
+  </div>
+  {% else %}
   <div class="backlog-note">
     <strong>Note:</strong> Since there are no pending papers on your record, the SBI Collect re-registration
     payment flow is not applicable to your account. If you believe this is incorrect,
     contact the Examination Branch at <a href="mailto:examdtu@gmail.com">examdtu@gmail.com</a>.
   </div>
+  {% endif %}
 
   <div class="backlog-actions">
     <a href="{{ url_for('student.dashboard') }}" class="btn-back">← Back to Portal</a>

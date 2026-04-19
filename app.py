@@ -118,7 +118,7 @@ def seed_sample_data():
         for e in exams:
             db.session.add(e)
 
-    # Seed a demo student
+    # Seed demo student #1 – Aaditya Mathur (IT)
     if not Student.query.filter_by(roll_number="22/IT/01").first():
         student = Student(
             roll_number="22/IT/01",
@@ -129,11 +129,10 @@ def seed_sample_data():
             semester=8,
             year=4
         )
-        student.set_password("demo1234")
+        student.set_password("nmke3391")
         db.session.add(student)
         db.session.flush()
 
-        # Seed results for demo student
         results = [
             Result(student_id=student.id, subject_code="CS101", subject_name="Programming Fundamentals",
                    internal_marks=28, external_marks=62, total_marks=90, max_marks=100,
@@ -158,6 +157,47 @@ def seed_sample_data():
                    grade="A+", grade_points=9.0, credits=4, semester=2, year=2023),
         ]
         for r in results:
+            db.session.add(r)
+
+    # Seed demo student #2 – Vishnu Singh Poonia (CO)
+    if not Student.query.filter_by(roll_number="22/CO/504").first():
+        student2 = Student(
+            roll_number="22/CO/504",
+            name="Vishnu Singh Poonia",
+            email="vishnusinghpoonia_co22a8_20@dtu.ac.in",
+            branch="Computer Engineering",
+            programme="B.Tech",
+            semester=8,
+            year=4
+        )
+        student2.set_password("vishnu504")
+        db.session.add(student2)
+        db.session.flush()
+
+        results2 = [
+            Result(student_id=student2.id, subject_code="CO101", subject_name="Introduction to Computing",
+                   internal_marks=26, external_marks=60, total_marks=86, max_marks=100,
+                   grade="A+", grade_points=9.0, credits=4, semester=1, year=2022),
+            Result(student_id=student2.id, subject_code="MA101", subject_name="Engineering Mathematics – I",
+                   internal_marks=22, external_marks=54, total_marks=76, max_marks=100,
+                   grade="A", grade_points=8.0, credits=4, semester=1, year=2022),
+            Result(student_id=student2.id, subject_code="PH101", subject_name="Engineering Physics",
+                   internal_marks=24, external_marks=58, total_marks=82, max_marks=100,
+                   grade="A+", grade_points=9.0, credits=4, semester=1, year=2022),
+            Result(student_id=student2.id, subject_code="CO201", subject_name="Data Structures",
+                   internal_marks=25, external_marks=62, total_marks=87, max_marks=100,
+                   grade="A+", grade_points=9.0, credits=4, semester=2, year=2023),
+            Result(student_id=student2.id, subject_code="CO203", subject_name="Computer Organisation",
+                   internal_marks=27, external_marks=63, total_marks=90, max_marks=100,
+                   grade="O", grade_points=10.0, credits=4, semester=2, year=2023),
+            Result(student_id=student2.id, subject_code="CO301", subject_name="Operating Systems",
+                   internal_marks=21, external_marks=52, total_marks=73, max_marks=100,
+                   grade="A", grade_points=8.0, credits=4, semester=3, year=2023),
+            Result(student_id=student2.id, subject_code="CO303", subject_name="Database Management Systems",
+                   internal_marks=23, external_marks=56, total_marks=79, max_marks=100,
+                   grade="A", grade_points=8.0, credits=4, semester=3, year=2023),
+        ]
+        for r in results2:
             db.session.add(r)
 
     db.session.commit()
